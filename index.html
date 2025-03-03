@@ -1,45 +1,412 @@
-<!--
-  Hit RUN to see this project in action!
-  
-  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
--->
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohel's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, #006EFE, #FF4C29);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #006EFE, #FF4C29);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(to right, #006EFE, #FF4C29);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 110, 254, 0.2);
+        }
+    </style>
 </head>
+<body class="bg-black text-white">
+    <!-- Background effect -->
+    <div class="fixed top-0 left-0 w-full h-full opacity-20 pointer-events-none z-0">
+        <div class="absolute top-20 left-20 w-64 h-64 rounded-full bg-blue-600 filter blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-64 h-64 rounded-full bg-red-500 filter blur-3xl"></div>
+    </div>
 
-<body>
-  <main>
-    <h1 class="title">Welcome to HTML on Replit!</h1>
-    <p class="description">Get started by editing
-      <code class="code">index.html</code>. The webview will auto-refresh as you edit! (See <code
-        class="code">README.md</code> if you want to
-      disable auto-refresh.)
-    </p>
+    <div class="relative z-10">
+        <!-- Navbar -->
+        <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg z-50 border-b border-gray-800">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="text-2xl font-bold">Sohel<span class="text-[#006EFE]">●</span></div>
 
-    <section class="grid">
-      <a href="https://replit.com/learn" class='card'>
-        <h2>Learn &rarr;</h2>
-        <p>Find tutorials on Replit to learn more.</p>
-      </a>
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-8 text-lg">
+                    <li><a href="#about" class="nav-link hover:text-[#006EFE] transition-colors">About</a></li>
+                    <li><a href="#projects" class="nav-link hover:text-[#006EFE] transition-colors">Projects</a></li>
+                    <li><a href="#blog" class="nav-link hover:text-[#006EFE] transition-colors">Blog</a></li>
+                </ul>
 
-      <a href="https://docs.replit.com/category/deployments" class='card'>
-        <h2>Deploy &rarr;</h2>
-        <p>
-          After you are happy with this app, deploy it on Replit!
-        </p>
-      </a>
-    </section>
-  </main>
+                <!-- Contact Button (Desktop) -->
+                <button class="hidden md:block bg-gradient px-6 py-2 rounded-lg text-white font-semibold hover-scale shadow-lg shadow-blue-900/20">
+                    Contact
+                </button>
 
-  <script type="module" src="script.js"></script>
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-3xl font-bold text-gradient transition-transform duration-300">
+                    ☰
+                </button>
+            </div>
+        </nav>
 
+        <!-- Mobile Menu (Slide-down from Top) -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 backdrop-filter backdrop-blur-lg z-50 transform -translate-y-full transition-transform duration-500 p-8">
+            <div class="flex justify-between items-center mb-10">
+                <h1 class="text-3xl font-bold">Sohel<span class="text-[#006EFE]">●</span></h1>
+                <button id="close-menu" class="text-3xl font-bold text-[#FF4C29] hover:rotate-90 transition-transform duration-300">✖</button>
+            </div>
+            <ul class="space-y-6 text-xl">
+                <li><a href="#about" class="hover:text-[#006EFE] transition-colors block">About</a></li>
+                <li><a href="#projects" class="hover:text-[#006EFE] transition-colors block">Projects</a></li>
+                <li><a href="#blog" class="hover:text-[#006EFE] transition-colors block">Blog</a></li>
+            </ul>
+            <button class="mt-10 w-full py-4 text-lg font-semibold bg-gradient rounded-lg hover-scale">
+                Contact
+            </button>
+            
+            <!-- Social Icons Mobile -->
+            <div class="flex justify-center gap-6 mt-10">
+                <a href="#" class="hover-scale p-2 bg-gray-900 rounded-full">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+                         alt="Facebook" class="w-8 h-8">
+                </a>
+                <a href="#" class="hover-scale p-2 bg-gray-900 rounded-full">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                         alt="WhatsApp" class="w-8 h-8">
+                </a>
+                <a href="#" class="hover-scale p-2 bg-gray-900 rounded-full">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" 
+                         alt="X (formerly Twitter)" class="w-8 h-8">
+                </a>
+                <a href="#" class="hover-scale p-2 bg-gray-900 rounded-full">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                         alt="LinkedIn" class="w-8 h-8">
+                </a>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="pt-24 pb-16 px-4 container mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                <div class="text-left md:w-1/3 p-5 card rounded-xl border border-blue-900/30">
+                    <h1 class="text-[#006EFE] text-3xl md:text-4xl font-bold">&lt;Developer</h1>
+                    <ul class="text-lg space-y-4 mt-4">
+                        <li class="flex items-center"><span class="text-[#006EFE] font-bold mr-3">01.</span> MERN Stack</li>
+                        <li class="flex items-center"><span class="text-[#006EFE] font-bold mr-3">02.</span> Next.js</li>
+                        <li class="flex items-center"><span class="text-[#006EFE] font-bold mr-3">03.</span> React Native</li>
+                        <li class="flex items-center"><span class="text-[#006EFE] font-bold mr-3">04.</span> Firebase</li>
+                    </ul>
+                    <p class="text-[#006EFE] text-3xl mt-4">/&gt;</p>
+                </div>
+                
+                <div class="p-2 hover-scale">
+                    <div class="rounded-xl overflow-hidden shadow-2xl border-2 border-gray-800 p-1 bg-gradient">
+                        <img src="Screenshot (5).png" class="rounded-lg" alt="Profile">
+                    </div>
+                </div>
+                
+                <div class="text-right md:w-1/3 p-5 card rounded-xl border border-red-900/30">
+                    <h1 class="text-[#FF4C29] text-3xl md:text-4xl font-bold">&lt;Designer</h1>
+                    <ul class="text-lg space-y-4 mt-4">
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">01.</span> UI & UX</li>
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">02.</span> Figma</li>
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">03.</span> WireFraming</li>
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">04.</span> User Research</li>
+                    </ul>
+                    <p class="text-[#FF4C29] text-3xl mt-4">--!&gt;</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8 hover-scale">
+                <p class="text-lg font-bold">Hey, I am Co-Founder of 
+                <span class="text-[#FF4C29] font-bold">Roadmapfinder</span> & 
+                <span class="text-[#006EFE] font-bold">ANOM</span></p>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div id="projects" class="py-16 container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-gradient text-center mb-12">
+                Projects
+            </h1>
+
+            <!-- Desktop & Mobile View -->
+            <div class="flex flex-col md:flex-row gap-8 items-stretch">
+                <div class="w-full md:w-1/2 card rounded-xl border border-[#006EFE] p-8 hover:border-opacity-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
+                            <span class="text-[#006EFE] text-2xl">💻</span>
+                        </div>
+                        <h2 class="text-[#006EFE] text-2xl font-semibold">Development</h2>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-[#006EFE] font-bold mr-3">01.</span>
+                            <div>
+                                <h3 class="font-medium">Website Projects</h3>
+                                <p class="text-gray-400 text-sm">Creating responsive, optimized websites</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-[#006EFE] font-bold mr-3">02.</span>
+                            <div>
+                                <h3 class="font-medium">App Projects</h3>
+                                <p class="text-gray-400 text-sm">Cross-platform mobile applications</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-[#006EFE] font-bold mr-3">03.</span>
+                            <div>
+                                <h3 class="font-medium">Desktop Projects</h3>
+                                <p class="text-gray-400 text-sm">Powerful desktop applications</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="w-full md:w-1/2 card rounded-xl border border-[#FF4C29] p-8 hover:border-opacity-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center mr-4">
+                            <span class="text-[#FF4C29] text-2xl">🎨</span>
+                        </div>
+                        <h2 class="text-[#FF4C29] text-2xl font-semibold">UI/UX Designs</h2>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-[#FF4C29] font-bold mr-3">01.</span>
+                            <div>
+                                <h3 class="font-medium">Website Design</h3>
+                                <p class="text-gray-400 text-sm">Beautiful, intuitive interfaces</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-[#FF4C29] font-bold mr-3">02.</span>
+                            <div>
+                                <h3 class="font-medium">App Design</h3>
+                                <p class="text-gray-400 text-sm">User-centric mobile experiences</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-[#FF4C29] font-bold mr-3">03.</span>
+                            <div>
+                                <h3 class="font-medium">Responsive</h3>
+                                <p class="text-gray-400 text-sm">Designs that work on all devices</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Post Section -->
+        <section id="blog" class="py-16 container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-gradient text-center mb-12">
+                Blog Post
+            </h1>
+
+            <div class="w-full max-w-3xl card rounded-xl border border-gray-800 p-8 shadow-xl mx-auto hover:border-[#006EFE]">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-gradient flex items-center justify-center mr-4">
+                        <span class="text-white text-xl">📝</span>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gradient">Insights & Knowledge</h2>
+                </div>
+                
+                <p class="text-lg font-medium leading-relaxed text-gray-300">
+                    "Tech & design evolve fast! Stay ahead with my insights on React, Next.js, 
+                    UI/UX, and software development. Learn best practices, trends, and expert 
+                    tips to build high-performance solutions."
+                </p>
+                <p class="mt-6 flex items-center gap-2 text-lg text-white">
+                    🔥 <span class="font-semibold">Stay inspired. Keep growing!</span>
+                </p>
+                <div class="mt-8 flex justify-end">
+                    <button class="px-8 py-3 text-lg font-semibold text-white rounded-lg bg-gradient hover-scale shadow-lg">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-16 container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-gradient text-center mb-12">
+                About Me!
+            </h1>
+            
+            <div class="text-center max-w-3xl mx-auto p-8 rounded-xl shadow-xl border border-gray-800 card hover:border-[#FF4C29]">
+                <div class="flex justify-center mb-6">
+                    <div class="w-16 h-16 rounded-full bg-gradient flex items-center justify-center">
+                        <span class="text-white text-2xl">👨‍💻</span>
+                    </div>
+                </div>
+                
+                <p class="text-xl text-gray-200 leading-relaxed">
+                    I am a <span class="text-blue-400 font-semibold">React</span> & <span class="text-green-400 font-semibold">Next.js</span> developer
+                    specializing in UI/UX design. Passionate about creating 
+                    <span class="text-yellow-400 font-semibold">modern, responsive,</span> and 
+                    <span class="text-red-400 font-semibold">high-performance</span> applications.
+                </p>
+                <button class="mt-8 px-8 py-3 text-lg font-bold rounded-lg shadow-lg 
+                    bg-gradient text-white hover-scale">
+                    Hire Me!
+                </button>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-gradient text-center mb-12">
+                Contact Me
+            </h1>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
+                <!-- Contact Form Section -->
+                <div class="w-full md:w-1/2 bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-800 card hover:border-[#006EFE]">
+                    <h2 class="text-3xl font-bold text-gradient mb-8">Let's Connect!</h2>
+
+                    <!-- Input Fields -->
+                    <div class="mb-6">
+                        <input type="text" placeholder="Name" 
+                            class="w-full p-4 rounded-lg bg-black border border-gray-700 text-white outline-none focus:ring-2 focus:ring-[#006EFE] focus:border-transparent transition-all">
+                    </div>
+                    <div class="mb-6">
+                        <input type="email" placeholder="Email" 
+                            class="w-full p-4 rounded-lg bg-black border border-gray-700 text-white outline-none focus:ring-2 focus:ring-[#006EFE] focus:border-transparent transition-all">
+                    </div>
+                    <div class="mb-6">
+                        <textarea placeholder="Message" rows="4"
+                            class="w-full p-4 rounded-lg bg-black border border-gray-700 text-white outline-none focus:ring-2 focus:ring-[#006EFE] focus:border-transparent transition-all"></textarea>
+                    </div>
+
+                    <!-- Send Button -->
+                    <button class="w-full py-4 rounded-lg font-semibold text-white bg-gradient 
+                        hover-scale shadow-lg text-lg">
+                        Send Message
+                    </button>
+
+                    <!-- Social Icons -->
+                    <div class="flex justify-center gap-6 mt-8">
+                        <a href="#" class="p-3 bg-black rounded-full border border-gray-800 hover-scale">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+                                 alt="Facebook" class="w-6 h-6">
+                        </a>
+                        <a href="#" class="p-3 bg-black rounded-full border border-gray-800 hover-scale">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                                 alt="WhatsApp" class="w-6 h-6">
+                        </a>
+                        <a href="#" class="p-3 bg-black rounded-full border border-gray-800 hover-scale">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.s" 
+                                 alt="X (formerly Twitter)" class="w-6 h-6">
+                        </a>
+                        <a href="#" class="p-3 bg-black rounded-full border border-gray-800 hover-scale">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
+                                 alt="LinkedIn" class="w-6 h-6">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Avatar Section -->
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative hover-scale">
+                        <div class="absolute inset-0 bg-gradient rounded-xl blur-md opacity-70 -z-10"></div>
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-xl bg-gradient p-2 shadow-xl">
+                            <img src="Screenshot (5).png" alt="Avatar"
+                                class="w-full h-full object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 border-t border-gray-800">
+            <div class="container mx-auto px-4 text-center">
+                <div class="text-2xl font-bold mb-4">Sohel<span class="text-[#006EFE]">●</span></div>
+                <p class="text-gray-400">© 2025 All Rights Reserved</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const closeBtn = document.getElementById("close-menu");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("-translate-y-full");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            mobileMenu.classList.add("-translate-y-full");
+        });
+
+        // Close mobile menu when clicking on a nav link
+        document.querySelectorAll("#mobile-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("-translate-y-full");
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
-
 </html>
