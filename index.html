@@ -6,60 +6,8 @@
     <title>Sohel's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .bg-gradient {
-            background: linear-gradient(135deg, #006EFE, #FF4C29);
-        }
-        
-        .text-gradient {
-            background: linear-gradient(to right, #006EFE, #FF4C29);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: linear-gradient(to right, #006EFE, #FF4C29);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .card {
-            transition: all 0.3s ease;
-            background: rgba(17, 17, 17, 0.7);
-            backdrop-filter: blur(10px);
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 110, 254, 0.2);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+  
 </head>
 <body class="bg-black text-white">
     <!-- Background effect -->
@@ -82,9 +30,11 @@
                 </ul>
 
                 <!-- Contact Button (Desktop) -->
-                <button class="hidden md:block bg-gradient px-6 py-2 rounded-lg text-white font-semibold hover-scale shadow-lg shadow-blue-900/20">
+                <a href="#contact" class="hidden md:block bg-gradient-to-r from-blue-500 to-red-500 
+                                         px-6 py-2 rounded-lg text-white font-semibold 
+                                         hover:scale-105 shadow-lg shadow-blue-900/20 transition-transform">
                     Contact
-                </button>
+                </a>
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-btn" class="md:hidden text-3xl font-bold text-gradient transition-transform duration-300">
@@ -104,8 +54,10 @@
                 <li><a href="#projects" class="hover:text-[#006EFE] transition-colors block">Projects</a></li>
                 <li><a href="#blog" class="hover:text-[#006EFE] transition-colors block">Blog</a></li>
             </ul>
-            <button class="mt-10 w-full py-4 text-lg font-semibold bg-gradient rounded-lg hover-scale">
+            <button class="mt-10 w-full py-4 text-lg font-semibold bg-gradient rounded-lg hover-scale" >
+                <a href="#contact" class="text-white">
                 Contact
+                </a>
             </button>
             
             <!-- Social Icons Mobile -->
@@ -118,8 +70,8 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
                          alt="WhatsApp" class="w-8 h-8">
                 </a>
-                <a href="#" class="hover-scale p-2 bg-gray-900 rounded-full">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" 
+                <a href="#" class="hover-scale p-2 bg-white rounded-full">
+                    <img src="https://www.svglogos.net/wp-content/uploads/X.svg" 
                          alt="X (formerly Twitter)" class="w-8 h-8">
                 </a>
                 <a href="#" class="hover-scale p-2 bg-gray-900 rounded-full">
@@ -142,19 +94,20 @@
                     </ul>
                     <p class="text-[#006EFE] text-3xl mt-4">/&gt;</p>
                 </div>
-                
-                <div class="p-2 hover-scale">
-                    <div class="rounded-xl overflow-hidden shadow-2xl border-2 border-gray-800 p-1 bg-gradient">
-                        <img src="Screenshot (5).png" class="rounded-lg" alt="Profile">
+                <div class="p-1 hover-scale">
+                    <div class="rounded-xl overflow-hidden shadow-1xl border-2 border-gray-800 p-1 bg-gradient h-85 w-65">
+                        <img src="profile.jpg" class="rounded-lg" alt="Profile">
                     </div>
+             
+
                 </div>
                 
                 <div class="text-right md:w-1/3 p-5 card rounded-xl border border-red-900/30">
                     <h1 class="text-[#FF4C29] text-3xl md:text-4xl font-bold">&lt;Designer</h1>
                     <ul class="text-lg space-y-4 mt-4">
-                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">01.</span> UI & UX</li>
-                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">02.</span> Figma</li>
-                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">03.</span> WireFraming</li>
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">01. </span> UI & UX</li>
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">02. </span> Figma</li>
+                        <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">03. </span> WireFraming</li>
                         <li class="flex items-center justify-end"><span class="text-[#FF4C29] font-bold ml-3">04.</span> User Research</li>
                     </ul>
                     <p class="text-[#FF4C29] text-3xl mt-4">--!&gt;</p>
@@ -170,7 +123,7 @@
 
         <!-- Projects Section -->
         <div id="projects" class="py-16 container mx-auto px-4">
-            <h1 class="text-4xl font-bold text-gradient text-center mb-12">
+            <h1 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-[#006EFE] to-[#FF4C29] bg-clip-text text-transparent">
                 Projects
             </h1>
 
@@ -181,7 +134,7 @@
                         <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
                             <span class="text-[#006EFE] text-2xl">💻</span>
                         </div>
-                        <h2 class="text-[#006EFE] text-2xl font-semibold">Development</h2>
+                        <h2 class="text-[#006EFE] text-2xl font-semibold">Development</a></h2>
                     </div>
                     <ul class="space-y-4">
                         <li class="flex items-start">
@@ -339,13 +292,13 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
                                  alt="WhatsApp" class="w-6 h-6">
                         </a>
-                        <a href="#" class="p-3 bg-black rounded-full border border-gray-800 hover-scale">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.s" 
+                        <a href="#" class="p-3 bg-white rounded-full border border-gray-800 hover-scale">
+                            <img src="https://www.svglogos.net/wp-content/uploads/X.svg" 
                                  alt="X (formerly Twitter)" class="w-6 h-6">
                         </a>
                         <a href="#" class="p-3 bg-black rounded-full border border-gray-800 hover-scale">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
-                                 alt="LinkedIn" class="w-6 h-6">
+                                 alt="LinkedIn" class="w-6 h-6 color-white">
                         </a>
                     </div>
                 </div>
@@ -373,40 +326,7 @@
     </div>
     
     <!-- JavaScript -->
-    <script>
-        const menuBtn = document.getElementById("menu-btn");
-        const closeBtn = document.getElementById("close-menu");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        menuBtn.addEventListener("click", () => {
-            mobileMenu.classList.remove("-translate-y-full");
-        });
-
-        closeBtn.addEventListener("click", () => {
-            mobileMenu.classList.add("-translate-y-full");
-        });
-
-        // Close mobile menu when clicking on a nav link
-        document.querySelectorAll("#mobile-menu a").forEach(link => {
-            link.addEventListener("click", () => {
-                mobileMenu.classList.add("-translate-y-full");
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <script src='script.js'>    
     </script>
 </body>
 </html>
